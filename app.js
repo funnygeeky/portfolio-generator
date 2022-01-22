@@ -1,5 +1,6 @@
  const { Console } = require('console');
 const fs = require('fs');
+const inquirer = require('inquirer');
 
  const profileDataArgs = process.argv.slice(2);
 
@@ -29,3 +30,13 @@ const fs = require('fs');
        
         console.log('')
     });
+
+    inquirer
+    .prompt([
+        {
+            type:'input',
+            name: 'name',
+            message:'What is your name?'
+        }
+    ])
+    .then(answers => console.log(answers));
