@@ -59,10 +59,23 @@ const inquirer = require('inquirer');
                     }
                 },
                 {
-                    type:'input',
-                    name:'about',
-                    message:'Provide some information about yourself:',
-                }
+                    type:'confirm',
+                    name:'confirmAbout',
+                    message:'Would you like to enter some information about yourself for an "About" section?',
+                    default: true
+                },
+                {
+                    type: 'input',
+                    name: 'about',
+                    message: 'Provide some nformation about yourself:',
+                    when: ({confirmAbout}) => {
+                        if (confirmAbout) {
+                            return true;   
+                        } else {
+                            return false;
+                        }
+                    }
+                },
             ])  
     };
 
@@ -130,7 +143,9 @@ const inquirer = require('inquirer');
                 name:'confirmAddProject',
                 message:'Would you like to enter another project?',
                 default: false
-            }
+            },
+
+            
         ])
     };
     promptUser()
